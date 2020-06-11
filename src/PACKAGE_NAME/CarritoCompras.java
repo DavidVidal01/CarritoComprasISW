@@ -66,4 +66,21 @@ public class CarritoCompras {
             return false;
         }
     }
+
+    public static double realizardescuento(Producto p1){
+        double p_final= p1.getPrecioProducto()-p1.getPrecioProducto()*p1.getDescuento();
+        return p_final;
+    }
+    public static String  obtenerdetalle(Producto p1) {
+        return p1.getNombreProducto() +" "+ p1.getPrecioProducto() +" "+ p1.getDetalleProducto();
+    }
+    public static void agregarProducto(Producto p1){
+        productos.add(p1);
+    }
+    public static boolean modificarcantidadProducto(Producto p1){
+        if(p1.getCantidad()>0){
+            return  true;
+        }else
+            return  false;
+    }
 }

@@ -8,7 +8,7 @@ public class Producto {
         String detalleProducto;
         int stockdisponible;
         int cantidad;
-
+        double descuento;
         //CONSTRUCTORES
         public Producto() {
         }
@@ -23,6 +23,14 @@ public class Producto {
                 this.precioProducto = precioUnitario;
                 this.stockdisponible = stockDisponible;
                 this.cantidad = cantidad;
+        }
+        public Producto(String nombreProducto, String descripcionProducto, double precioUnitario, int stockDisponible, int cantidad,double descuento) {
+                this.nombreProducto = nombreProducto;
+                this.detalleProducto = descripcionProducto;
+                this.precioProducto = precioUnitario;
+                this.stockdisponible = stockDisponible;
+                this.cantidad = cantidad;
+                this.descuento= descuento;
         }
         //GETTERS Y SETTERS
         public String getIdProducto() {
@@ -73,11 +81,19 @@ public class Producto {
                 this.cantidad = cantidad;
         }
 
+        public double getDescuento() {
+                return descuento;
+        }
+
+        public void setDescuento(double descuento) {
+                this.descuento = descuento;
+        }
+
         //METODOS
-        public  String obtenerdetalle(Producto p1) {
-                //carrito.agregarProducto();
-                //Producto producto = carrito.getProductos().get(0);
-                //System.out.printf(p1.getNombreProducto() +" "+ p1.getPrecioProducto() +" "+ p1.getDetalleProducto());
-                return p1.getNombreProducto() +" "+ p1.getPrecioProducto() +" "+ p1.getDetalleProducto();
+        public static boolean controlCantidad(Producto p){
+               if(p.cantidad>0){
+                       return true;
+               }else
+                       return false;
         }
 }
