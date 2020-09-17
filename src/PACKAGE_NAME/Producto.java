@@ -90,10 +90,11 @@ public class Producto {
         }
 
         //METODOS
+        /*
         public static boolean controlCantidad(Producto p){
                if(p.cantidad>0){
                        return true;
                }else
                        return false;
-        }
+        }*/
 }

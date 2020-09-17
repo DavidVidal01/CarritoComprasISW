@@ -30,25 +30,13 @@ public class CarritoCompras {
 
 
     //METODOS
-    public void agregarProducto(){
-        Producto p1 = new Producto();
-        p1.setNombreProducto("Celular Huawei p10");
-        p1.setPrecioProducto(31000);
-        p1.setDetalleProducto("Android 10.0, 3gb RAM, 64gb Memoria");
-        Producto p2 = new Producto();
-        Producto p3 = new Producto();
-        productos.add(p1);
-        productos.add(p2);
-        productos.add(p3);
+    public static void agregarProducto(Producto p1){
+        CarritoCompras.productos.add(p1);
+
     }
 
-    public static boolean obtenercantidadProductos(CarritoCompras carrito){
-        carrito.agregarProducto();
-       int cantidad= carrito.getProductos().size();
-       if( cantidad>0){
-           return true;
-       }else
-       return false;
+    public static int obtenercantidadProductos(CarritoCompras carrito){
+       return carrito.getProductos().size();
     }
 
     public static boolean cantidad_no_mayor_stock(Producto p1){
@@ -74,13 +62,18 @@ public class CarritoCompras {
     public static String  obtenerdetalle(Producto p1) {
         return p1.getNombreProducto() +" "+ p1.getPrecioProducto() +" "+ p1.getDetalleProducto();
     }
-    public static void agregarProducto(Producto p1){
-        productos.add(p1);
-    }
+
     public static boolean modificarcantidadProducto(Producto p1){
         if(p1.getCantidad()>0){
             return  true;
         }else
             return  false;
+    }
+    public static void realizarcompra(CarritoCompras carrito){
+
+        for (int i=0;i<carrito.getProductos().size();i++) {
+            Producto p1 =carrito.getProductos().get(i);
+            p1.setStockdisponible(p1.getStockdisponible()-p1.getCantidad());
+        }
     }
 }

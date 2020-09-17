@@ -17,9 +17,9 @@ public class CarritoComprasTest {
     //Test David
     @Test
     public void test_minimo_un_producto_asociado(){
-
-        boolean res_obtenido = CarritoCompras.obtenercantidadProductos(carrito);
-        boolean res_esperado = true;
+        carrito.agregarProducto(p1);
+        int res_obtenido = CarritoCompras.obtenercantidadProductos(carrito);
+        int res_esperado = 1;
         assertEquals(res_esperado,res_obtenido);
     }
 
@@ -29,9 +29,9 @@ public class CarritoComprasTest {
         String res_esperado = "Celular Huawei p10 31000.0 Android 10.0, 3gb RAM, 64gb Memoria";
         assertEquals(res_esperado,res_obtenido);
     }
-//Test Diego Atencia
+    //Test Diego Atencia
     @Test
-    public void testCantidadStock(){
+    public void test_cantidad_de_prodcuto_debe_ser_menor_a_stock(){
         boolean resultado = CarritoCompras.cantidad_no_mayor_stock(p2);
         boolean esperado = true;
         assertEquals(esperado,resultado);
@@ -39,36 +39,43 @@ public class CarritoComprasTest {
     }
 
     @Test
-    public void testNombreDescripcion(){
+    public void test_producto_debe_tener_Nombre_y_Descripcion(){
         boolean resultado = CarritoCompras.nombre_y_descripcion(p2);
         boolean esperado = true;
         assertEquals(esperado,resultado);
     }
+
+
 //Test Diego Di Leo
 
     @Test
-    public void test_verificar_descuento(){
+    public void test_verificar_descuento_realizado_sobre_producto(){
         double resultado = CarritoCompras.realizardescuento(p3);
         double esperado = 1500;
         assertEquals(esperado,resultado,0);
     }
     @Test
-    public void controlar_cantidad_noseanula (){
-        boolean resultado_obtenido = Producto.controlCantidad(p4);
-        boolean resultado_esperado = true;
-        Assert.assertEquals(resultado_esperado,resultado_obtenido);
+    public void controlar_cantidad_de_producto_no_sea_nula (){
+        //boolean resultado_obtenido = Producto.controlCantidad(p4);
+        //boolean resultado_esperado = true;
+        int resultado_obtenido = p4.getCantidad();
+        Assert.assertNotEquals(0,resultado_obtenido);
+        //Assert.assertEquals(resultado_esperado,resultado_obtenido);
     }
 
     //Test Matias
     @Test
-    public void agregar_producto_no_afecta_stock(){
+    public void agregar_producto_al_carrito_no_afecta_stock(){
         CarritoCompras.agregarProducto(p5);
         assertEquals(50,p5.getStockdisponible());
     }
 
     @Test
-    public void no_modificar_cantidad_producto_en_0_o_menos(){
-       boolean obtenido= CarritoCompras.modificarcantidadProducto(p5);
-        assertEquals(true,obtenido);
+    public void disminuir_stock_de_producto_al_realizar_compra(){
+        carrito.agregarProducto(p4);
+        carrito.realizarcompra(carrito);
+       int obtenido= p4.getStockdisponible();
+       int esperado = 1;
+        assertEquals(esperado,obtenido);
     }
 }
